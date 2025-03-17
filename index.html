@@ -76,7 +76,7 @@
         }
 
         #noBtn.moving {
-            animation: shake 0.5s ease;
+            animation: shake 0.7s ease;
         }
 
         @keyframes btnGlow {
@@ -85,11 +85,12 @@
         }
 
         @keyframes shake {
-            0% { transform: translateX(0); }
-            25% { transform: translateX(-10px); }
-            50% { transform: translateX(10px); }
-            75% { transform: translateX(-5px); }
-            100% { transform: translateX(0); }
+            0% { transform: translateX(0) translateY(0) rotate(0deg); }
+            20% { transform: translateX(-20px) translateY(-30px) rotate(-5deg); }
+            40% { transform: translateX(20px) translateY(-20px) rotate(5deg); }
+            60% { transform: translateX(-15px) translateY(20px) rotate(-3deg); }
+            80% { transform: translateX(10px) translateY(10px) rotate(3deg); }
+            100% { transform: translateX(0) translateY(0) rotate(0deg); }
         }
     </style>
 </head>
@@ -113,13 +114,13 @@
             const noBtn = document.getElementById('noBtn');
             const buttonWidth = noBtn.offsetWidth;
             const buttonHeight = noBtn.offsetHeight;
-            const maxX = window.innerWidth - buttonWidth - 300;
-            const maxY = window.innerHeight - buttonHeight - 300;
+            const maxX = window.innerWidth - buttonWidth - 50;
+            const maxY = window.innerHeight - buttonHeight - 50;
             const minX = 0;
             const minY = 0;
 
-            let randomX = Math.floor(Math.random() * (maxX - minX)) + minX + 50 ;
-            let randomY = Math.floor(Math.random() * (maxY - minY)) + minY + 50 ;
+            let randomX = Math.floor(Math.random() * (maxX - minX)) + minX;
+            let randomY = Math.floor(Math.random() * (maxY - minY)) + minY;
 
             randomX = Math.max(minX, Math.min(randomX, maxX));
             randomY = Math.max(minY, Math.min(randomY, maxY));
@@ -131,7 +132,7 @@
             noBtn.classList.add('moving');
             setTimeout(() => {
                 noBtn.classList.remove('moving');
-            }, 500);
+            }, 700);
         }
     </script>
 </body>
