@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ở đây có sự cute</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            animation: bgAnimation 10s infinite alternate ease-in-out;
+        }
+
+        @keyframes bgAnimation {
+            0% { background: linear-gradient(135deg, #ff9a9e, #fad0c4); }
+            25% { background: linear-gradient(135deg, #a18cd1, #fbc2eb); }
+            50% { background: linear-gradient(135deg, #fad0c4, #ffd1ff); }
+            75% { background: linear-gradient(135deg, #fbc2eb, #ff9a9e); }
+            100% { background: linear-gradient(135deg, #ff9a9e, #fad0c4); }
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 40px;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            width: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #yesBtn {
+            background: linear-gradient(270deg, #a8e063, #84c44f);
+            color: #fff;
+            animation: btnGlow 3s infinite alternate;
+        }
+
+        #yesBtn:hover {
+            transform: scale(1.1);
+        }
+
+        #noBtn {
+            background: linear-gradient(270deg, #ff6f61, #ff2e2e);
+            color: #fff;
+        }
+
+        #noBtn.moving {
+            animation: shake 0.7s ease;
+        }
+
+        @keyframes btnGlow {
+            0% { box-shadow: 0 0 10px rgba(168, 224, 99, 0.7); }
+            100% { box-shadow: 0 0 20px rgba(168, 224, 99, 1); }
+        }
+
+        @keyframes shake {
+            0% { transform: translateX(0) translateY(0) rotate(0deg); }
+            20% { transform: translateX(-20px) translateY(-30px) rotate(-5deg); }
+            40% { transform: translateX(20px) translateY(-20px) rotate(5deg); }
+            60% { transform: translateX(-15px) translateY(20px) rotate(-3deg); }
+            80% { transform: translateX(10px) translateY(10px) rotate(3deg); }
+            100% { transform: translateX(0) translateY(0) rotate(0deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Brooo cho Thực vay 5tr nha</h1>
+        <div class="buttons">
+            <button id="yesBtn" onclick="showImage()">okiii lunnn</button>
+            <button id="noBtn" onclick="moveButton()">hông bé ơi</button>
+        </div>
+        <img id="image" src="image/Screenshot 2025-03-17 165506.png" alt="Hình ảnh" style="display: none;">
+    </div>
+
+    <script>
+        function showImage() {
+            document.getElementById('image').style.display = 'block';
+            document.querySelector('.buttons').style.display = 'none';
+        }
+
+        function moveButton() {
+            const noBtn = document.getElementById('noBtn');
+            const buttonWidth = noBtn.offsetWidth;
+            const buttonHeight = noBtn.offsetHeight;
+            const maxX = window.innerWidth - buttonWidth - 50;
+            const maxY = window.innerHeight - buttonHeight - 50;
+            const minX = 0;
+            const minY = 0;
+
+            let randomX = Math.floor(Math.random() * (maxX - minX)) + minX;
+            let randomY = Math.floor(Math.random() * (maxY - minY)) + minY;
+
+            randomX = Math.max(minX, Math.min(randomX, maxX));
+            randomY = Math.max(minY, Math.min(randomY, maxY));
+
+            noBtn.style.position = 'absolute';
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+
+            noBtn.classList.add('moving');
+            setTimeout(() => {
+                noBtn.classList.remove('moving');
+            }, 700);
+        }
+    </script>
+</body>
+</html>
